@@ -1,7 +1,6 @@
 <?php
 ini_set('memory_limit', '1024M');
 
-
 $json = file_get_contents('citylist.json');
 $data2 = json_decode($json, true);
 
@@ -24,7 +23,7 @@ $id2 = getIdByName($name2, $data2);
 }*/
 //---------------------------------------------------
 $apiKey = "2725c8a36862eae1980d31e322f0e7d8";
-$cityId = "651299";
+//$cityId = "651299";
 //$city = $_POST['city'];
 $googleApiUrl = "http://api.openweathermap.org/data/2.5/weather?id=" . $id2. "&lang=en&units=metric&APPID=" . $apiKey;
 
@@ -103,7 +102,7 @@ span.min-temperature {
 		<h1>Current Weather</h1>
 		<p>Enter location</p>
 		<form method="post">
-    		<input type='text' name="city"/>
+    		<input type='text' name="city" value="Vaasa"/>
     		<input type="submit" name="go"/>
 		</form>
 		<p>
