@@ -13,8 +13,12 @@ function getIdByName($name2, $data2) {
     return null;
 }
 
-$name2 = $_POST['city'];
-$id2 = getIdByName($name2, $data2);
+$name2= $_POST['city'];
+if ($name2==""){
+	$id2 = "651299";
+} else{
+	$id2 = getIdByName($name2, $data2);
+}
 
 /*if ($id2) {
     echo "The id of '$name2' is: $id2";
@@ -23,7 +27,7 @@ $id2 = getIdByName($name2, $data2);
 }*/
 //---------------------------------------------------
 $apiKey = "2725c8a36862eae1980d31e322f0e7d8";
-//$cityId = "651299";
+//$id2 = "651299";
 //$city = $_POST['city'];
 $googleApiUrl = "http://api.openweathermap.org/data/2.5/weather?id=" . $id2. "&lang=en&units=metric&APPID=" . $apiKey;
 
@@ -102,7 +106,7 @@ span.min-temperature {
 		<h1>Current Weather</h1>
 		<p>Enter location</p>
 		<form method="post">
-    		<input type='text' name="city" value="Vaasa"/>
+    		<input type='text' name="city"/>
     		<input type="submit" name="go"/>
 		</form>
 		<p>
