@@ -107,6 +107,7 @@ $flag = $data->sys->country;
                 src="http://openweathermap.org/img/w/<?php echo $data->weather[0]->icon; ?>.png"
                 class="weather-icon" /> <?php echo $data->main->temp_max; ?>&deg;C
 				<span class="min-temperature"><?php echo $data->main->temp_min; ?>&deg;C</span>
+				<div> Feels like: <?php echo $data->main->feels_like; ?>&deg;</div> 
         </div>
         <div class="time">
             <div>Humidity: <?php echo $data->main->humidity; ?> %</div>

@@ -37,12 +37,26 @@ $response2 = curl_exec($ch2);
 curl_close($ch2);
 $data3 = json_decode($response2);
 
+$flag = $data3->city->country;
 
 
 function realDate($date){
 	$date2 = strtotime($date);
 	return(date('D H:i', $date2));
 }
+
+function forecastColumn($data3, $columnNumber){
+	echo '<div class="column">';
+	echo realDate($data3->list[$columnNumber]->dt_txt);		
+	echo '<br> <img src="http://openweathermap.org/img/w/';
+	echo $data3->list[$columnNumber]->weather[0]->icon;
+	echo '.png" class="weather-icon" /> ';
+	echo $data3->list[$columnNumber]->main->temp_max; 
+	echo '&deg;C <span class="min-temperature">';
+	echo $data3->list[$columnNumber]->main->temp_min;
+	echo '&deg;C</span></div>';
+}
+
 ?>
 <!doctype html>
 <html>
@@ -78,78 +92,104 @@ function realDate($date){
 		<br>
 		<div class="report-container2">
 		<h1>Weather Forecast <?php echo $data->name; ?></h1>
-        <div class="row">
-			<div class="column">
-				<?php echo realDate($data3->list[0]->dt_txt);?>
-				<br>
-				<img src="http://openweathermap.org/img/w/<?php echo $data3->list[0]->weather[0]->icon; ?>.png"
-                class="weather-icon" /> <?php echo $data3->list[0]->main->temp_max; ?>&deg;C
-				<span class="min-temperature"><?php echo $data3->list[0]->main->temp_min; ?>&deg;C</span>
-			</div>
-			<div class="column">
-				<?php echo realDate($data3->list[1]->dt_txt);?>
-				<br>
-				<img src="http://openweathermap.org/img/w/<?php echo $data3->list[1]->weather[0]->icon; ?>.png"
-                class="weather-icon" /> <?php echo $data3->list[1]->main->temp_max; ?>&deg;C
-				<span class="min-temperature"><?php echo $data3->list[1]->main->temp_min; ?>&deg;C</span>
-			</div>
-			<div class="column">
-				<?php echo realDate($data3->list[2]->dt_txt);?>
-				<br>
-				<img src="http://openweathermap.org/img/w/<?php echo $data3->list[2]->weather[0]->icon; ?>.png"
-                class="weather-icon" /> <?php echo $data3->list[2]->main->temp_max; ?>&deg;C
-				<span class="min-temperature"><?php echo $data3->list[2]->main->temp_min; ?>&deg;C</span>
-			</div>
-		</div>
-		<br>
+		<h2><?php echo $data3->city->name; ?> <img width="28" height="21" 
+	 	src="https://flagcdn.com/28x21/<?php echo strtolower($flag) ?>.png"/></h2>
+		
 		<div class="row">
-			<div class="column">
-				<?php echo realDate($data3->list[3]->dt_txt);?>
-				<br>
-				<img src="http://openweathermap.org/img/w/<?php echo $data3->list[3]->weather[0]->icon; ?>.png"
-                class="weather-icon" /> <?php echo $data3->list[3]->main->temp_max; ?>&deg;C
-				<span class="min-temperature"><?php echo $data3->list[3]->main->temp_min; ?>&deg;C</span>
-			</div>
-			<div class="column">
-				<?php echo realDate($data3->list[4]->dt_txt);?>
-				<br>
-				<img src="http://openweathermap.org/img/w/<?php echo $data3->list[4]->weather[0]->icon; ?>.png"
-                class="weather-icon" /> <?php echo $data3->list[4]->main->temp_max; ?>&deg;C
-				<span class="min-temperature"><?php echo $data3->list[4]->main->temp_min; ?>&deg;C</span>
-			</div>
-			<div class="column">
-				<?php echo realDate($data3->list[5]->dt_txt);?>
-				<br>
-				<img src="http://openweathermap.org/img/w/<?php echo $data3->list[5]->weather[0]->icon; ?>.png"
-                class="weather-icon" /> <?php echo $data3->list[5]->main->temp_max; ?>&deg;C
-				<span class="min-temperature"><?php echo $data3->list[5]->main->temp_min; ?>&deg;C</span>
-			</div>
+			<?php
+			forecastColumn($data3, 0);
+			forecastColumn($data3, 1);
+			forecastColumn($data3, 2);
+			?>
 		</div>
-		<br>
 		<div class="row">
-			<div class="column">
-				<?php echo realDate($data3->list[6]->dt_txt);?>
-				<br>
-				<img src="http://openweathermap.org/img/w/<?php echo $data3->list[6]->weather[0]->icon; ?>.png"
-                class="weather-icon" /> <?php echo $data3->list[6]->main->temp_max; ?>&deg;C
-				<span class="min-temperature"><?php echo $data3->list[6]->main->temp_min; ?>&deg;C</span>
-			</div>
-			<div class="column">
-				<?php echo realDate($data3->list[7]->dt_txt);?>
-				<br>
-				<img src="http://openweathermap.org/img/w/<?php echo $data3->list[7]->weather[0]->icon; ?>.png"
-                class="weather-icon" /> <?php echo $data3->list[7]->main->temp_max; ?>&deg;C
-				<span class="min-temperature"><?php echo $data3->list[7]->main->temp_min; ?>&deg;C</span>
-			</div>
-			<div class="column">
-				<?php echo realDate($data3->list[8]->dt_txt);?>
-				<br>
-				<img src="http://openweathermap.org/img/w/<?php echo $data3->list[8]->weather[0]->icon; ?>.png"
-                class="weather-icon" /> <?php echo $data3->list[8]->main->temp_max; ?>&deg;C
-				<span class="min-temperature"><?php echo $data3->list[8]->main->temp_min; ?>&deg;C</span>
-			</div>
+			<?php
+			forecastColumn($data3, 3);
+			forecastColumn($data3, 4);
+			forecastColumn($data3, 5);
+			?>
+		</div>
+		<div class="row">
+			<?php
+			forecastColumn($data3, 6);
+			forecastColumn($data3, 7);
+			forecastColumn($data3, 8);
+			?>
+		</div>
+		<div class="row">
+			<?php
+			forecastColumn($data3, 9);
+			forecastColumn($data3, 10);
+			forecastColumn($data3, 11);
+			?>
+		</div>
+		<div class="row">
+			<?php
+			forecastColumn($data3, 12);
+			forecastColumn($data3, 13);
+			forecastColumn($data3, 14);
+			?>
+		</div>
+		<div class="row">
+			<?php
+			forecastColumn($data3, 15);
+			forecastColumn($data3, 16);
+			forecastColumn($data3, 17);
+			?>
+		<div class="row">
+			<?php
+			forecastColumn($data3, 18);
+			forecastColumn($data3, 19);
+			forecastColumn($data3, 20);
+			?>
+		</div>
+		<div class="row">
+			<?php
+			forecastColumn($data3, 21);
+			forecastColumn($data3, 22);
+			forecastColumn($data3, 23);
+			?>
+		</div>
+		<div class="row">
+			<?php
+			forecastColumn($data3, 24);
+			forecastColumn($data3, 25);
+			forecastColumn($data3, 26);
+			?>
+		</div>
+		<div class="row">
+			<?php
+			forecastColumn($data3, 27);
+			forecastColumn($data3, 28);
+			forecastColumn($data3, 29);
+			?>
+		</div>
+		<div class="row">
+			<?php
+			forecastColumn($data3, 30);
+			forecastColumn($data3, 31);
+			forecastColumn($data3, 32);
+			?>
+		</div>
+		<div class="row">
+			<?php
+			forecastColumn($data3, 33);
+			forecastColumn($data3, 34);
+			forecastColumn($data3, 35);
+			?>
+		<div class="row">
+			<?php
+			forecastColumn($data3, 36);
+			forecastColumn($data3, 37);
+			forecastColumn($data3, 38);
+			?>
+		</div>
+		<div class="row">
+			<?php
+			forecastColumn($data3, 39);
+			?>
+		</div>
 		</div>
 	</div>
-	
 </body>
 </html>
