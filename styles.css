@@ -1,0 +1,103 @@
+@charset "utf-8";
+/* CSS Document */
+body {
+    font-family: Arial;
+    font-size: 0.95em;
+   	color: #929292;
+	
+}
+
+.report-container1 {
+	text-align: center;
+    border: #E0E0E0 1px solid;
+    padding: 20px 40px 40px 40px;
+    border-radius: 2px;
+    width: 550px;
+    margin: 0 auto;
+	
+}
+.report-container2 {
+    border: #E0E0E0 1px solid;
+    padding: 20px 40px 40px 40px;
+    border-radius: 2px;
+    width: 800px;
+    margin: 0 auto;
+	
+}
+
+.weather-icon {
+    vertical-align: middle;
+    margin-right: 20px;
+}
+
+.weather-forecast {
+    color: #212121;
+    font-size: 1.2em;
+    font-weight: bold;
+    margin: 20px 0px;
+}
+
+span.min-temperature {
+    margin-left: 15px;
+    color: #929292;
+}
+
+.time {
+    line-height: 25px;
+}
+.column{
+	float: left;
+  	width: 30%;
+ 	padding: 5px;
+	margin: 5px;
+	border: #E0E0E0 2px solid;
+}
+.row::after {
+  	content: "";
+  	clear: both;
+  	display: table;
+}
+ul {
+ 	list-style-type: none;
+ 	margin: 0;
+ 	padding: 0;
+ 	overflow: hidden;
+ 	background-color: #474747;
+}
+
+li {
+ 	float: left;
+}
+
+li a {
+ 	display: block;
+ 	color: white;
+ 	text-align: center;
+ 	padding: 14px 16px;
+ 	text-decoration: none;
+}
+
+li a:hover:not(.active) {
+ 	background-color: #111;
+}
+
+.active {
+ 	background-color: black;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
