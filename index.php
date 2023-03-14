@@ -100,6 +100,7 @@
 				if(!isset($_SESSION["logged_in"]) || $_SESSION["logged_in"] !== true){
 					echo '<li style="float:right"><a class="active" href="login.php">Sign in</a></li>';
 				}else{
+					echo '<li style="float:left"><a href="saved.php">Saved</a></li>';
 					echo '<li style="float:right"><a class="active" href="logout.php">Sign out</a></li>';
 					echo '<li style="float:right">';
 					echo '<a>',$_SESSION['username'],'</a>';
@@ -183,7 +184,7 @@
 				$username3 = $_SESSION['username'];
 				
 				
-				$date1 = date("l g:i a", $currentTime + $sec);
+				$date1 = date("g:i a", $currentTime + $sec);
 				$date2 = date("jS F, Y",$currentTime + $sec);
 				
 				$tempMIN = $data->main->temp_min;

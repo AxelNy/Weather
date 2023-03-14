@@ -79,6 +79,7 @@ function forecastColumn($data3, $columnNumber){
 				if(!isset($_SESSION["logged_in"]) || $_SESSION["logged_in"] !== true){
 					echo '<li style="float:right"><a class="active" href="login.php">Sign in</a></li>';
 				}else{
+					echo '<li style="float:left"><a href="saved.php">Saved</a></li>';
 					echo '<li style="float:right"><a class="active" href="logout.php">Sign out</a></li>';
 					echo '<li style="float:right">';
 					echo '<a>',$_SESSION['username'],'</a>';
