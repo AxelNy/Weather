@@ -9,8 +9,8 @@ session_start();
 <head>
 <meta charset="utf-8">
 <link href="styles.css" rel="stylesheet" type="text/css">
-<title>Log in</title>
-<style>
+<title>Sign in</title>
+	<style>
 	fieldset{
 		width:250px;
 		border: solid;
@@ -32,7 +32,7 @@ session_start();
 </head>
 
 <body>
-<h2>Login</h2>
+<h2>Sign in</h2>
 
 <?
 	$user="";
@@ -61,6 +61,7 @@ session_start();
 			$dbconn->close();
 			
 			if($result->num_rows==1 && password_verify($pass, $hash)){
+				$_SESSION['username'] = $user;
 				
 				$_SESSION["logged_in"] = true;
 				
@@ -75,18 +76,21 @@ session_start();
 				echo"<p class='error'>".$errormsg."</p>";	
 			}
 	}
-
+	
 	echo'<form name="loginform" method="post" action="">';
 		echo'<fieldset>';
-		echo'<legend>Logga in</legend><br>';
-			echo'<label for="username">Användarnamn:</label><br>';
+		//echo'<legend>Sign in</legend><br>';
+			echo'<label for="username">Username:</label><br>';
 			echo'<input type="text" name="username" size="30" value="'.$user.'"><br>';
-			echo'<label for="password">Lösenord:</label><br>';
+			echo'<label for="password">Password:</label><br>';
 			echo'<input type="password" name="password" size="30" value="'.$pwd.'"><br><br>';
-			echo'<input type="submit" name="submit" value="Logga in">';
+			echo'<input type="submit" name="submit" value="Sign in">';
 		echo'</fieldset>';
 		echo'</form>';
 		
+	echo'<form name="signup" method="post" action="newUser.php" style="text-align: center">';
+		echo'<input type="submit" name="gogo" value="Sign up">';
+	echo'</form>';
 ?>
 
 </body>

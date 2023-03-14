@@ -67,17 +67,25 @@
 		return $data;	
 	}
 	
+	$user = cleanData($_POST['username']);
+	$pass = cleanData($_POST['password']);
+	
 	#Detta händer om a finns, då man klickar på skapa-knappen
 	if(isset($_GET['a'])&&$_GET['a']=='yes'){
 		require"dbconn.php";
 		
+		$userSQL = "SELECT user FROM userAcc WHERE user =". $_POST['username'];
+		echo $user;
+		$result = $dbconn->query($userSQL);
+		if ($result !=0){
+			echo "<p class='error'>Username is taken</p>";	
+		}
 		if(empty($_POST['username']) || empty($_POST['password']) || empty($_POST['password2'])){
 			echo "<p class='error'>Du måste fylla i alla fält</p>";	
 		}else if(strcmp($_POST['password'], $_POST['password2']) !==0){
 			echo "<p class='error' style='text-align:center;'>Lösenordet matchar inte</p>";	
 		}else{
-			$user = cleanData($_POST['username']);
-			$pass = cleanData($_POST['password']);	
+				
 
 			
 			#krypterar lösenordet med ARGON2I
