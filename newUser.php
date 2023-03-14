@@ -34,7 +34,7 @@
 </head>
 
 <body>
-<h2>Skapa ny admin</h2>
+<h2>Sign Up</h2>
 <?
 
 	$user="";
@@ -43,22 +43,27 @@
 	echo '<form name="newuser" method="post" action="newUser.php?a=yes">';
 		echo '<fieldset>';
 			echo '<p>';
-				echo '<label for="username">Användarnamn:</label>';
+				echo '<label for="username">Username:</label><br>';
 				echo '<input type="text" name="username" required>';
 			echo '</p>';
 			echo '<p>';
-				echo '<label for="password">Lösenord:</label><br>';
+				echo '<label for="password">Password:</label><br>';
 				echo '<input type="password" name="password" required>';
 			echo '</p>';
 			echo '<p>';
-				echo '<label for="password2">Upprepa lösenordet:</label>';
+				echo '<label for="password2">Repeat Password:</label>';
 				echo '<input type="password" name="password2" required>';
 			echo '</p>';
 			echo '<p>';
-				echo '<input type="submit" value="Skapa"';
+				echo '<input type="submit" value="Submit"';
 			echo '</p>';
 		echo '</fieldset>';
 	echo '</form>';
+	
+	echo'<form name="signin" method="post" action="login.php" style="text-align: center">';
+		echo '<p>Already have a account?</p>';
+		echo'<input type="submit" name="gogo" value="Login">';
+	echo'</form>';
 	
 	#filtreringsfunktion
 	function cleanData($data){
@@ -81,9 +86,9 @@
 			echo "<p class='error'>Username is taken</p>";	
 		}
 		if(empty($_POST['username']) || empty($_POST['password']) || empty($_POST['password2'])){
-			echo "<p class='error'>Du måste fylla i alla fält</p>";	
+			echo "<p class='error'>Error! No EMPTY FIELDS!</p>";	
 		}else if(strcmp($_POST['password'], $_POST['password2']) !==0){
-			echo "<p class='error' style='text-align:center;'>Lösenordet matchar inte</p>";	
+			echo "<p class='error' style='text-align:center;'>Passwords don't match</p>";	
 		}else{
 				
 

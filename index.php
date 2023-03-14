@@ -144,7 +144,7 @@
 			</div>
 			<div class="time">
 				<div>Humidity: <?php echo $data->main->humidity; ?> %</div>
-				<div>Wind: <?php echo $data->wind->speed; ?> km/h</div>
+				<div>Wind: <?php echo $data->wind->speed; ?> M/s</div>
 			</div>
 			<br>
 			<div class="row">
@@ -170,6 +170,40 @@
 					<span class="min-temperature"><?php echo $data3->list[2]->main->temp_min; ?>&deg;C</span>
 				</div>
 			</div>
+			<?php
+			if(isset($_SESSION["logged_in"]) || $_SESSION["logged_in"] == true){
+				echo '<form name="saveWeather" method="post" action="index.php">';
+					echo '<input type="hidden" name="s" value="yes">';
+					echo '<input type="submit" name="submit" value="Save">';
+				echo '</form>';
+			}
+			
+			if(isset($_POST['s']) && $_POST['s']=='yes'){
+				require"dbconn.php";
+				$username3 = $_SESSION['username'];
+				
+				
+				$date1 = date("l g:i a", $currentTime + $sec);
+				$date2 = date("jS F, Y",$currentTime + $sec);
+				
+				$tempMIN = $data->main->temp_min;
+				$tempMAX = $data->main->temp_max;
+				$tempFEEL = $data->main->feels_like;
+				$humidity = $data->main->humidity;
+				$wind = $data->wind->speed;
+				
+				$sqlSave = "INSERT INTO saveddata(username, date1, date2, tempMin, tempMax, tempFeel, humidity, wind) VALUES('$username3', '$date1', '$date2', '$tempMIN', '$tempMAX', '$tempFEEL', '$humidity', '$wind')";
+				
+				$dbconn->query($sqlSave);
+			
+				$dbconn->close()	;
+				
+				echo '<p>Data Saved!</p>';
+				
+				
+				
+			}
+			?>
 		</div>
 		<br>
 	</body>
