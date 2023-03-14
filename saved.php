@@ -127,11 +127,11 @@ table.TableInfo tr:last-of-type td:last-of-type {
 				echo "<tr>";
 					echo "<td>".$row['date1']."</td>";
 					echo "<td>".$row['date2']."</td>";
-					echo "<td>".$row['tempMin']."</td>";
-					echo "<td>".$row['tempMax']."</td>";
-					echo "<td>".$row['tempFeel']."</td>";
-					echo "<td>".$row['humidity']."</td>";
-					echo "<td>".$row['wind']."</td>";
+					echo "<td>".$row['tempMin']."&deg;C</td>";
+					echo "<td>".$row['tempMax']."&deg;C</td>";
+					echo "<td>".$row['tempFeel']."&deg;C</td>";
+					echo "<td>".$row['humidity']."%</td>";
+					echo "<td>".$row['wind']."m/s</td>";
 					echo"<td>
 						 <a href='saved.php?d=yes&id=".$row['id']."'><img src='media/delete.png' alt='Delete' widht='25' height='25'>'</a>
 						 </td>";

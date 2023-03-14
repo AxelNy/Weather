@@ -176,6 +176,7 @@
 				echo '<form name="saveWeather" method="post" action="index.php">';
 					echo '<input type="hidden" name="s" value="yes">';
 					echo '<input type="submit" name="submit" value="Save">';
+					echo '<img src="media/info.png" title="Saves most of the data from this page to the SAVED page." alt="Info" widht="25" height="25">';
 				echo '</form>';
 			}
 			

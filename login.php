@@ -9,6 +9,7 @@ session_start();
 <head>
 <meta charset="utf-8">
 <link href="styles.css" rel="stylesheet" type="text/css">
+<link rel="shortcut icon" href="media/logo2.png";>
 <title>Sign in</title>
 	<style>
 	fieldset{
@@ -87,7 +88,8 @@ session_start();
 			echo'<input type="submit" name="submit" value="Sign in">';
 		echo'</fieldset>';
 		echo'</form>';
-		
+	
+	echo "<p style='text-align: center'>Don't have a account?</p>";
 	echo'<form name="signup" method="post" action="newUser.php" style="text-align: center">';
 		echo'<input type="submit" name="gogo" value="Sign up">';
 	echo'</form>';

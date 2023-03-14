@@ -10,8 +10,10 @@
 <!DOCTYPE HTML>
 <html>
 <head>
+<link rel="stylesheet" href="styles.css">
+<link rel="shortcut icon" href="media/logo2.png";>
 <meta charset="utf-8">
-<title>Ny användare</title>
+<title>Sign Up</title>
 <style>
 	fieldset{
 		width:250px;
@@ -79,12 +81,13 @@
 	if(isset($_GET['a'])&&$_GET['a']=='yes'){
 		require"dbconn.php";
 		
-		$userSQL = "SELECT user FROM userAcc WHERE user ='$user'";
-		$result = $dbconn->query($userSQL);
-		if ($result !=0){
-			echo "<p class='error'>Username is taken</p>";	
-		}
-		else if(empty($_POST['username']) || empty($_POST['password']) || empty($_POST['password2'])){
+		//$userSQL = 'SELECT user FROM userAcc WHERE user ="'.$user.'"';
+		//$result = $dbconn->query($userSQL);
+		//if ($result !=NULL){
+			//echo "<p class='error'>Username is taken</p>";
+			//$dbconn->close();
+		//}
+		if(empty($_POST['username']) || empty($_POST['password']) || empty($_POST['password2'])){
 			echo "<p class='error'>Error! No EMPTY FIELDS!</p>";	
 		}else if(strcmp($_POST['password'], $_POST['password2']) !==0){
 			echo "<p class='error' style='text-align:center;'>Passwords don't match</p>";	
@@ -99,7 +102,7 @@
 			
 			$dbconn->query($sql);
 			
-			$dbconn->close()	;
+			$dbconn->close();
 			header("Location: index.php");
 			exit;
 		}
