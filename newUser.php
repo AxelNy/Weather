@@ -79,13 +79,12 @@
 	if(isset($_GET['a'])&&$_GET['a']=='yes'){
 		require"dbconn.php";
 		
-		$userSQL = "SELECT user FROM userAcc WHERE user =". $_POST['username'];
-		echo $user;
+		$userSQL = "SELECT user FROM userAcc WHERE user ='$user'";
 		$result = $dbconn->query($userSQL);
 		if ($result !=0){
 			echo "<p class='error'>Username is taken</p>";	
 		}
-		if(empty($_POST['username']) || empty($_POST['password']) || empty($_POST['password2'])){
+		else if(empty($_POST['username']) || empty($_POST['password']) || empty($_POST['password2'])){
 			echo "<p class='error'>Error! No EMPTY FIELDS!</p>";	
 		}else if(strcmp($_POST['password'], $_POST['password2']) !==0){
 			echo "<p class='error' style='text-align:center;'>Passwords don't match</p>";	

@@ -68,6 +68,7 @@ function forecastColumn($data3, $columnNumber){
 <title>Axel's Weather</title>
 <link rel="stylesheet" href="styles.css">
 <link rel="shortcut icon" href="media/logo2.png";>
+
 </head>
 
 <body>
