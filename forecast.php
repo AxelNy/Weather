@@ -7,6 +7,10 @@ ini_set('memory_limit', '1024M');
 $json = file_get_contents('citylist.json');
 $data2 = json_decode($json, true);
 
+if(isset($_POST['city']) && !empty($_POST['city'])) {
+    	$_SESSION['city'] = $_POST['city'];
+	}
+
 function getIdByName($name2, $data2) {
     foreach ($data2 as $row2) {
         if ($row2['name'] == $name2) {
@@ -15,7 +19,7 @@ function getIdByName($name2, $data2) {
     }
     return null;
 }
-$name3 = ucfirst(strtolower($_POST['city']));
+$name3 = ucfirst(strtolower($_SESSION['city']));
 $name2 =  $name3;
 if ($name2==""){
 	$id2 = "651299";
@@ -94,7 +98,7 @@ function forecastColumn($data3, $columnNumber){
 			<h1>Axel's Weather</h1>
 			<p>Enter location</p>
 			<form method="post">
-				<input type='text' name="city"/>
+				<input type='text' name="city" value="<?php echo isset($_SESSION['city']) ? $_SESSION['city'] : ''; ?>"/>
 				<input type="submit" name="go"/>
 			</form>
 			<p>

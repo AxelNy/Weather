@@ -13,6 +13,10 @@
 	$json = file_get_contents('citylist.json');
 	$data2 = json_decode($json, true);
 
+	if(isset($_POST['city']) && !empty($_POST['city'])) {
+    	$_SESSION['city'] = $_POST['city'];
+	}
+
 	//functionen tar stads namnet söker i data efter stadnamnet och hämtar stadens ID
 	//stadens id behövs för APIn skull
 	function getIdByName($name2, $data2) {
@@ -25,8 +29,10 @@
 	}
 		
 	//gör stad namnet användaren skriver in till rätt format
-	$name3 = ucfirst(strtolower($_POST['city']));
+	$name3 = ucfirst(strtolower($_SESSION['city']));
 	$name2 =  $name3;
+
+	//$id2 = getIdByName($name2, $data2);
 
 	//om användaren lämnar tomt visar sidan vädret för Korsholm
 	if ($name2==""){
@@ -82,7 +88,8 @@
 	}
 	//tar landets namn t.ex. fi
 	$flag = $data->sys->country;
-
+	
+	
 ?>
 
 <!doctype html>
@@ -114,7 +121,8 @@
 			<h1>Axel's Weather</h1>
 			<p>Enter location</p>
 			<form method="post">
-				<input type='text' name="city"/>
+				<?php //<input type='text' name="city"/>;?>
+				<input type='text' name="city" value="<?php echo isset($_SESSION['city']) ? $_SESSION['city'] : ''; ?>"/>
 				<input type="submit" name="go"/>
 			</form>
 			<p>
@@ -179,32 +187,32 @@
 					echo '<img src="media/info.png" title="Saves most of the data from this page to the SAVED page." alt="Info" widht="25" height="25">';
 				echo '</form>';
 			}
-			
+
 			if(isset($_POST['s']) && $_POST['s']=='yes'){
 				require"dbconn.php";
 				$username3 = $_SESSION['username'];
-				
-				
-				$date1 = date("g:i a", $currentTime + $sec);
+    
+    
+    			$date1 = date("g:i a", $currentTime + $sec);
 				$date2 = date("jS F, Y",$currentTime + $sec);
-				
+
 				$city = $data->name;
 				$tempMIN = $data->main->temp_min;
 				$tempMAX = $data->main->temp_max;
 				$tempFEEL = $data->main->feels_like;
 				$humidity = $data->main->humidity;
 				$wind = $data->wind->speed;
-				
+
 				$sqlSave = "INSERT INTO saveddata(username, city, date1, date2, tempMin, tempMax, tempFeel, humidity, wind) VALUES('$username3', '$city','$date1', '$date2', '$tempMIN', '$tempMAX', '$tempFEEL', '$humidity', '$wind')";
-				
+
 				$dbconn->query($sqlSave);
-			
-				$dbconn->close()	;
-				
+
+				$dbconn->close();
+
 				echo '<p>Data Saved!</p>';
-				
-				
-				
+				// Redirect to the same page after form submission
+				header("Location: index.php");
+				exit;
 			}
 			?>
 		</div>

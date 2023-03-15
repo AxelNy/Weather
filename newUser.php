@@ -64,7 +64,7 @@
 	
 	echo'<form name="signin" method="post" action="login.php" style="text-align: center">';
 		echo '<p>Already have a account?</p>';
-		echo'<input type="submit" name="gogo" value="Login">';
+		echo'<input type="submit" name="gogo" value="Sign In">';
 	echo'</form>';
 	
 	#filtreringsfunktion
