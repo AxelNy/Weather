@@ -114,6 +114,7 @@ table.TableInfo tr:last-of-type td:last-of-type {
 		echo "<table class='tableInfo'>";
 		
 			echo "<tr>";
+			    echo "<th>City</th>";
 				echo "<th>Time</th>";
 				echo "<th>Date</th>";
 				echo "<th>TempMin</th>";
@@ -125,6 +126,7 @@ table.TableInfo tr:last-of-type td:last-of-type {
 			echo "</tr>";
 			while($row = $result->fetch_assoc()){
 				echo "<tr>";
+				    echo "<td>".$row['city']."</td>";
 					echo "<td>".$row['date1']."</td>";
 					echo "<td>".$row['date2']."</td>";
 					echo "<td>".$row['tempMin']."&deg;C</td>";

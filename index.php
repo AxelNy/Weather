@@ -188,13 +188,14 @@
 				$date1 = date("g:i a", $currentTime + $sec);
 				$date2 = date("jS F, Y",$currentTime + $sec);
 				
+				$city = $data->name;
 				$tempMIN = $data->main->temp_min;
 				$tempMAX = $data->main->temp_max;
 				$tempFEEL = $data->main->feels_like;
 				$humidity = $data->main->humidity;
 				$wind = $data->wind->speed;
 				
-				$sqlSave = "INSERT INTO saveddata(username, date1, date2, tempMin, tempMax, tempFeel, humidity, wind) VALUES('$username3', '$date1', '$date2', '$tempMIN', '$tempMAX', '$tempFEEL', '$humidity', '$wind')";
+				$sqlSave = "INSERT INTO saveddata(username, city, date1, date2, tempMin, tempMax, tempFeel, humidity, wind) VALUES('$username3', '$city','$date1', '$date2', '$tempMIN', '$tempMAX', '$tempFEEL', '$humidity', '$wind')";
 				
 				$dbconn->query($sqlSave);
 			
